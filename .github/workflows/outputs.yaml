@@ -1,0 +1,17 @@
+name: outputs
+on: [push, pull_request]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      job_output: ${{ steps.set_step_output.outputs.val }}
+    steps:
+      - id: set_step_output
+        run: echo "val=world" >> $GITHUB_OUTPUT
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job 1 said ${{ needs.job1.outputs.job_output }}"
