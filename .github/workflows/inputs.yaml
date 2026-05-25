@@ -1,0 +1,47 @@
+name: Parameterized Production Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      log_level:
+        description: 'Log verbosity level'
+        required: true
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+        default: 'info'
+      
+      deploy_target:
+        description: 'Target infrastructure environment'
+        required: true
+        type: environment
+        default: 'staging'
+
+      run_migrations:
+        description: 'Execute database schema changes'
+        required: false
+        type: boolean
+        default: false
+
+      release_tag:
+        description: 'Git tag or commit hash to deploy'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.deploy_target }}
+    
+    steps:
+      - name: Display Selected Parameters
+        run: |
+          echo "Deploying version: ${{ inputs.release_tag }}"
+          echo "Log level set to: ${{ inputs.log_level }}"
+          echo "Run migrations option: ${{ inputs.run_migrations }}"
+
+      - name: Conditional Migration Step
+        if: ${{ inputs.run_migrations == true }}
+        run: echo "Executing database migrations..."
