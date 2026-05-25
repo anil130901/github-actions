@@ -1,0 +1,11 @@
+name: Debug Event Context
+on: [push, pull_request]
+
+jobs:
+  inspect-payload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub Event Object
+        env:
+          EVENT_JSON: ${{ toJSON(github.event) }}
+        run: echo "$EVENT_JSON"
