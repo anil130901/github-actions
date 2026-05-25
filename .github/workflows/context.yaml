@@ -7,5 +7,5 @@ jobs:
     steps:
       - name: Dump GitHub Event Object
         env:
-          EVENT_JSON: ${{ toJSON(github.event) }}
+          EVENT_JSON: ${{ toJSON(github) }}
         run: echo "$EVENT_JSON"
