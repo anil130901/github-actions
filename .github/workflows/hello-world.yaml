@@ -1,10 +1,11 @@
 name: Hello World Action
-on: [push] # Triggers the workflow every time you push code
+on: workflow_dispatch
+# [push] # Triggers the workflow every time you push code
 
 jobs:
 # job name
   say-hello:
     runs-on: ubuntu-latest # github hosted runners
     steps:
-      - name: Run Greeting
-        run: echo "Hello, World!" # the command to execute
+      - name: manual dispatch
+        run: echo "manual dispatched" # the command to execute
