@@ -1,0 +1,17 @@
+name: feature branch push
+on: 
+  push:
+    branches:
+      - 'feature*'
+# workflow_dispatch
+# [push] # Triggers the workflow every time you push code
+
+jobs:
+# job name
+  say-hello:
+    runs-on: ubuntu-latest # github hosted runners
+    steps:
+      # - name: manual dispatch
+      #   run: echo "manual dispatched" # the command to execute
+        - name: feature branch push 
+          run: echo "feature branch push " # the command to execute
