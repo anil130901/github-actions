@@ -8,4 +8,6 @@ jobs:
       - name: Dump GitHub Event Object
         env:
           EVENT_JSON: ${{ toJSON(github) }}
-        run: echo "$EVENT_JSON"
+        run: |
+          echo "$EVENT_JSON"
+          echo "branch name: ${{ github.ref }}"
