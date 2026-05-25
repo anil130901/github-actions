@@ -11,3 +11,7 @@ jobs:
         run: |
           echo "$EVENT_JSON"
           echo "branch name: ${{ github.ref }}"
+      - name: print secrets
+        run: |
+          echo "DB username : ${{ secrets.DB_USER }}" 
+           echo "DB password : ${{ secrets.DB_PASSWORD }}"
